@@ -4,602 +4,349 @@
 <meta charset="UTF-8">
 <title>carousel</title>
 
-<link href="style_2.css" rel="stylesheet" type="text/css">
-
 <style>
-  
-/* remove spaces around email design added by some email clients - can remove  padding/margin and add a background color to compose reply window */
-html,body{
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 100% !important;
-    width: 100% !important;
-	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-	color: #fff;
-	}
-
-/* stop email clients resizing small text */
-*{
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-  	}
-
-/* force Outlook.com to display emails full width */
-.ExternalClass{
-    width: 100%;
-  	}
-
-/* center email on Android 4.4 */
-div[style*="margin: 16px 0"]{
-    margin: 0 !important;
-  	}
-
-/* stop mso adding spacing to tables */
-table,td{
-    mso-table-lspace: 0pt !important;
-    mso-table-rspace: 0pt !important;
-  	}
-
-/* fix webkit padding issue. Fix for Yahoo mail table alignment bug. Apply table-layout to first 2 tables then remove for tables nested deeper */
-table{
-    border-spacing: 0 !important;
-    border-collapse: collapse !important;
-    table-layout: fixed !important;
-    margin: 0 auto !important;
-  	}
-
-table table table{
-    table-layout: auto;
-  	}
-
-/* use more effective rendering method when resizing images in IE */
-img{
-    -ms-interpolation-mode: bicubic;
-  	}
-
-/* override styles added by Yahoo auto-sensing a link */
-.yshortcuts a{
-    border-bottom: none !important;
-  	}
-
-/* work-around for iOS meddling in triggered links */
-a[x-apple-data-detectors]{
-    color: inherit !important;
-  	}
 	
-.outer{
-	overflow: hidden;	
-	}
-	
-.format{
-	padding: 0;	
-	color: #05004d;
-	font-size: 1em;
-	line-height: 1.5em;
-	}
-	
-.format2{
-	padding: 0;	
-	color: #05004d;
-	font-size: 1em;
-	line-height: 1.5em;
-	}
-
-/* set video width - change as needed */
-.vid-outer{
-	width: 100%;
-	}
-
-/* padding-top sets overall height */
-.vid-inner{
-    padding-top: 56.25%;
-    height: 0px;
+.slider {
+    display: flex;
     position: relative;
-	}
-
-/* final iframe uses 100% width & height */
-.vid{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-	}
-	
-.buttonStat{
-    text-align: center;
-    padding: 15px 20px;
-	color: #f6f7f4;
-    background-color: #6364ff;
-    transition: all 100ms ease-in;
-	border-radius: 35px;
-  	}
-	
-.buttonLink{
-    text-align: center;
-    padding: 15px 20px;
-    text-decoration: none !important;
-    text-align: center;
-    transition: all 100ms ease-in;
-	color: #f6f7f4;
-	border-radius: 35px;
-  }
-	
-.buttonStat:hover{
-    background-color: #fff;
-    transition: all 100ms ease-in;
-	border-radius: 35px;
-  	}
-	
-.buttonLink:hover{
-    text-align: center;
-    padding: 15px 20px;
-	color: #6364ff;
-
-  }
-
-.phone{
-	color: #f6f7f4; 
-	background-color: transparent;  
-	padding: 0 3px;
-  	border-radius: 15px;
-	text-decoration: none !important;	
-	}
-	
-.phone:hover{
-	color: #6364ff; 
-	background-color: #f6f7f4;  
-	padding: 0 3px;
-  	border-radius: 15px;
-	text-decoration: none !important;	
-	}
-	
-.email{
-	color: #f6f7f4 !important; 
-	background-color: transparent;  
-	padding: 0 3px;
-  	border-radius: 15px;
-	text-decoration: none !important;	
-	}
-	
-.email:hover{
-	color: #6364ff !important; 
-	background-color: #f6f7f4;  
-	padding: 0 3px;
-  	border-radius: 15px;
-	text-decoration: none !important;	
-	}
-	
-.footForm{
-	padding: 0 25px;	
-	color: #b7bac3;
-	font-size: .85em;
-	line-height: 1.35em;	
-	}
-	
-.un{
-	color: #b7bac3;
-	background-color: transparent; 
-	padding: 0 3px;
-  	border-radius: 15px;
-	border: 3px solid #b7bac3;
-	text-decoration: none !important;		
-	}
-	
-.un:hover{
-	color: #f6f7f4; 
-	background-color: #6364ff; 
-	padding: 0 3px;
-  	border-radius: 15px;
-	border: 1px solid transparent;
-	text-decoration: none !important;	
-	}
-
-/* Media Queries */
-@media screen and (max-width: 600px){
-
-.email-container{
-      width: 100% !important;
-    }
-	
-.outer{
-	max-width: 600px;	
-	}
-
- /* force elements to resize to full container width. Useful for resizing images beyond their max-width */
-.fluid, .fluid-centered{
-      max-width: 100% !important;
-      height: auto !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-    }
-
-/* center justify */
-.fluid-centered{
-      margin-left: auto !important;
-      margin-right: auto !important;
-    }
-
-/* force table cells into full-width rows */
-.stack-column, .stack-column-center{
-      display: block !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      direction: ltr !important;
-    }
-
-/* center justify */
-.stack-column-center{
-      text-align: center !important;
-    }
-
-/* generic utility centering class for images, buttons and nested tables */
-.center-on-narrow{
-      text-align: center !important;
-      display: block !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      float: none !important;
-    }
-
-table.center-on-narrow{
-      display: inline-block !important;
-    }
-	  
-/* set video width - change as needed */
-.vid-outer{
-	width: 100%;
-	}
-
-/* padding-top sets overall height */
-.vid-inner{
-    padding-top: 56.25%;
-    height: 0px;
-    position: relative;
-	}
-
-/* final iframe uses 100% width & height */
-.vid{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-	}
 
 }
-	
+.next, .prev {
+    border: none;
+    border-radius: 5px;
+    background: none;
+    font-size: 30px;
+    background-color: #eee;
+}
+.next:hover,
+.prev:hover {
+    background-color: #ddd;
+}
+.prev {
+    order: 1;
+}
+.inner {
+    position: relative;
+    flex-grow: 1;
+    order: 2;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.next {
+    order: 3;
+}
+.item {
+    width: 100%;
+    position: absolute;
+    display: none;
+}
+.image {
+    width: 23%;
+    margin: 0 1%;
+    display: inline-block;
+}
+img {
+    width: 100%;
+}
+
+.active {
+    position: relative;
+    display: block;
+}
+.item-next,
+.item-prev {
+    top: 0;
+    display: block;
+    z-index: 1;
+}
+.item-next {
+    left: 100%;
+}
+.item-prev {
+    left: -100%;
+}
+.item-left {
+    animation: slideInLeft 1s forwards;
+}
+
+.item-right {
+    animation: slideInRight 1s forwards;
+}
+
+.active-left {
+    animation: slideOutLeft 1s forwards;
+}
+.active-right {
+    animation: slideOutRight 1s forwards;
+}
+
+
+@keyframes slideInLeft {
+    from {left:100%;}
+    to {left:0;}
+}
+
+@keyframes slideInRight {
+    from {left:-100%;}
+    to {left:0;}
+}
+
+@keyframes slideOutLeft {
+    from {left:0;}
+    to {left:-100%;}
+}
+
+@keyframes slideOutRight {
+    from {left:0;}
+    to {left:100%;}
+}
+
+
 </style>
 
-<!-- center table container start -->	
-<center width="100%" class="outer">
+</head>
 
-	<!-- outer email table container start -->	
-	<table bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" border-collapse="collapse">
-	  <tr>
-		<td>
-			
-			<!-- div table start -->	
-			<table width="600" height="55vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
+<body>
+<div class="slider">
+    <div class="inner">
+        <div class="item active">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+        </div>
+        <div class="item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+        </div>
+    </div>
+    <button class="prev">&lt;</button>
+    <button class="next">&gt;</button>
+</div>
 
-		<!-- logo container start -->	
-		<table align="center" width="600" bgcolor="#05004d" class="email-container">
-			<tr>
-				<td align="center"><img src="https://lisagraph.github.io/EquitiseWhiteLogo/equitise-bannerlogo-f6f7f4.png" width="250" height="63" alt="alt_text" border="0"></td>
-			</tr>
-		</table>
-		<!-- logo container end -->
-			
-			<!-- div table start -->	
-			<table width="600" height="52vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
 
-		<!-- NH webinar video link table start -->	
-		<table width="600" height="auto" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" bgcolor="#f6f7f4" style="border-radius: 15px 15px 0 0; border: 0 0 1px 0 solid #05004d;" class="fluid, fluid-centered">  
-			<tr class="vid-outer">
-				<td class="vid-inner">
-					<iframe class="vid" src="https://player.vimeo.com/video/833897532?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" style="border: hidden; border-radius: 15px 15px 0 0;"></iframe>
-				</td>
-			</tr>
-		</table>
-		<!-- NH webinar video link table end -->
-			
-			<!-- div table start -->	
-			<table width="600" height="30vh" bgcolor="#f6f7f4" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" style="border: 1px 0 solid #f6f7f4;" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
 
-		<!-- 3 col table start -->
-		<table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#f6f7f4" width="600" class="email-container">
-		<tr>
-
-		<!-- col 1 of 3 start -->
-		<td width="33.33%" class="stack-column-center">
-			<table cellspacing="0" cellpadding="25px" border="0">
-					<td text-align="center"><img src="https://lisagraph.github.io/NaturesHelp1/A16.jpg" width="150" height="150" alt="alt_text" border="0" style="border-radius: 15px;" class="fluid, col1"/></td>
-			</table>			  
-		</td>
-		<!-- col 1 of 3 end -->
-			
-		<!-- col 2 of 3 start --> 
-		<td width="33.33%" class="stack-column-center">
-			<table cellspacing="0" cellpadding="25px" border="0">
-					<td text-align="center"><img src="https://lisagraph.github.io/NaturesHelp3/Meno%20Rejuv.jpg" width="150" height="150" alt="alt_text" border="0" style="border-radius: 15px;" class="fluid, col2"/></td>
-			</table>
-		</td>
-		<!-- col 2 of 3 end -->
-
-		<!-- col 3 of 3 start -->
-		<td width="33.33%" class="stack-column-center">
-			<table cellspacing="0" cellpadding="25px" border="0">
-					<td text-align="center"><img src="https://lisagraph.github.io/NaturesHelp2/Meno%20Femin.jpg" width="150" height="150" alt="alt_text" border="0" style="border-radius: 15px;" class="fluid, col3"/></td>
-			</table>
-		</td>
-		<!-- col 3 of 3 end -->
-
-		</tr>	  
-		</table>
-		<!-- 3 col table end -->
-			
-			<!-- div table start -->	
-			<table width="600" height="25vh" bgcolor="#f6f7f4" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" style="border: 0 0 1px 0 solid #f6f7f4;" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
-
-		<!-- Reg Interest button table start -->
-		<table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#f6f7f4" width="600" colour="#05004d" class="email-container">
-			<tr>
-				<td text-align="center" class="format">
-					<table cellspacing="0" cellpadding="0" border="0" align="center" margin="auto">
-						<tr>
-							<td background="file:///LisaGraph/EquitiseEmail_FromScratchTemplate/1-EquitiseEmail/transparent" text-align="center" style="border-radius: 25px;" class="buttonStat"><a href="https://equitise.com/offer/hero-packaging-offer" target="new"></a><a href="https://equitise.com/blog/bundlfresh-reaches-maximum-raise-target-of-1m" background-color="#6364ff" class="buttonLink"><b>Register Interest</b></a></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-		<!-- Reg Interest button table end -->
-			
-			<!-- div table start -->	
-			<table width="600" height="47vh" bgcolor="#f6f7f4" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" style="border: 0 0 1px 0 solid #f6f7f4;" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
-
-		<!-- Paragraph table start -->		
-		<table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#f6f7f4" width="600" style="border: 1px 0 solid #f6f7f4;" class="email-container">
-			<tr>
-				<td text-align="left" style="padding:0 25px;" class="format">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut erat</td>
-			</tr>
-		</table>
-		<!-- Paragraph table end -->
-			
-			<!-- div table start -->	
-			<table width="600" height="25vh" bgcolor="#f6f7f4" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" style="border: 1px 0 solid #f6f7f4;" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
-
-		<!-- 2 col BULLET POINT table start -->
-		<table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#f6f7f4" width="600" colour="#05004d" style="border: 1px 0 solid #f6f7f4;" class="email-container">
-			<tr>	
-
-			   <!-- col 1 of 2 start -->
-			   <td width="50%" class="stack-column-center">
-				   <table cellspacing="0" cellpadding="0" border="0">
-
-							<td text-align="left" color="#05004d" class="format2">
-									<ol>
-										<li>Maecenas sed ante pellentesque, posuere leo id</li>
-										<li>Eleifend dolor. Class aptent Class aptent class</li>
-										<li>Sociosqu ad litora torquent per conubia nostra</li>
-										<li>Per inceptos himenaeos torquent per ad taciti</li>
-										<li>Class aptent taciti sociosqu dolor aptent taciti</li>
-									</ol>  
-							</td>
-
-					</table>			  
-				</td>
-				<!-- col 1 of 2 end -->
-
-				<!-- col 2 of 2 start --> 
-				<td width="50%" class="stack-column-center">
-					<table cellspacing="0" cellpadding="0" border="0">
-
-							<td text-align="left" style="padding:  0 20px 0 0;" class="format2">
-								<ul>
-									<li>Torquent per conubia nostra maecenas</li>
-									<li>Per inceptos himenaeos Praesent laoreet</li>
-									<li>Malesuada cursus. Maecenas congue eros eu</li>
-									<li>Scelerisque congue eros eu in felis per in</li>
-									<li>Praesent in felis per conubia velit laoreet</li>
-								</ul>  
-							</td>
-
-					</table>
-				</td>
-				<!-- col 2 of 2 end --> 
-
-			</tr>	  
-		</table>
-		<!-- 2 col BULLET POINT table end -->
-			
-			<!-- div table start -->	
-			<table width="600" height="5vh" bgcolor="#f6f7f4" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" style="border: 1px 0 solid #f6f7f4;" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
-
-		<!-- 2 col IMAGE table start -->
-		<table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#f6f7f4" width="600" style="border: 1px 0 solid #f6f7f4;" class="email-container">
-			<tr>
-				<td align="center">
-					<table cellspacing="0" cellpadding="0" border="0" width="100%">
-						<tr>
-
-						  <!-- 1 in 2 col IMAGE table start -->	
-						  <td class="stack-column-center">
-							<table cellspacing="0" cellpadding="25px 0 0 0" border="0">
-							  <tr>
-								<td><img src="https://lisagraph.github.io/NaturesHelp1/A16.jpg" width="250" height="250" alt="alt_text" border="0" style="border-radius: 15px;" class="fluid"/></td>
-							  </tr>
-							</table>
-						  </td>
-						  <!-- 1 in 2 col IMAGE table end -->	
-
-						  <!-- 2 in 2 col IMAGE table start -->	
-						  <td class="stack-column-center">
-							<table cellspacing="0" cellpadding="25px 0 0 0" border="0">
-							  <tr>
-								<td><img src="https://lisagraph.github.io/NaturesHelp2/Meno%20Femin.jpg" width="250" height="250" alt="alt_text" border="0" style="border-radius: 15px;" class="fluid"/></td>
-							  </tr>
-							</table>
-						  </td>
-						  <!-- 2 in 2 col IMAGE table end -->
-
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-		<!-- 2 col IMAGE table end -->
-			
-			<!-- div table start -->	
-			<table width="600" height="28vh" bgcolor="#f6f7f4" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" style="border: 1px 0 solid #f6f7f4;" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
-
-		<!-- stats banner start -->
-		<table cellspacing="0" cellpadding="0" border="0" align="center" width="600" bgcolor="#f6f7f4" style="border-radius: 0 0 25px 25px;" class="email-container">
-			<tr>
-				<td class="full-width-image"><a href="https://equitise.com/blog/equity-crowdfunding-guide"><img src="https://lisagraph.github.io/EmailStatsBanner/Equitise_Stat_EDM_Banner_May2023.png" alt="alt_text" border="0" align="center" width="100%" max-width="600" height="auto" style="border-radius: 25px;" class="fluid"></a></td>
-			</tr>
-		</table>
-		<!-- stats banner end -->
-			
-			<!-- div table start -->	
-			<table width="600" height="55vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
-			
-		<!-- Follow us start -->
-		<table align="center" width="600" bgcolor="#05004d" class="email-container, format, fluid">
-			<tr>
-				<td width="100%" style="text-align: center; color: #f6f7f4;" class="format"><strong>Follow us on social media</strong></td>
-			</tr>
-		</table>
-
-		<!-- Follow us end -->
-			
-			<!-- div table start -->	
-			<table width="600" height="55vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-			<!-- div table end -->
-			
-		<!-- 3 col table start - SOCIAL ICONS -->
-		<table cellspacing="0" cellpadding="0" border="0" align="center" width="600" colour="#f6f7f4" class="email-container">
-			<tr>
-
-		<!-- col 1 of 3 start -->
-		<td width="33.33%">
-			<table cellspacing="0" cellpadding="0" border="0">
-				<tr>
-					<td><img src="https://lisagraph.github.io/LinkedInporcelain/%20f6f7f4LinkedIn.png" width="50" height="50" alt="LinkedIn icon" border="0"/></td>
-				</tr>
-			</table>			  
-		</td>
-		<!-- col 1 of 3 end -->
-
-		<!-- col 2 of 3 start -->
-		<td width="33.33%">
-			<table cellspacing="0" cellpadding="0" border="0">
-				<tr>
-					<td><img src="https://lisagraph.github.io/FBporcelain/%20f6f7f4fFB.png" width="50" height="50" alt="Facebook icon" border="0"/></td>
-				</tr>
-			</table>
-		</td>
-		<!-- col 2 of 3 end -->
-			
-		<!-- col 3 of 3 start -->
-		<td width="33.33%">
-			<table cellspacing="0" cellpadding="0" border="0">
-				<tr>
-					<td><img src="https://lisagraph.github.io/IGporcelain/%20f6f7f4IG.png" width="50" height="50" alt="Instagram icon" border="0"/></td>
-				</tr>
-			</table>
-		</td>
-		<!-- col 3 of 3 end -->
-
-		</tr>	  
-		</table>
-		<!-- 3 col table end - SOCIAL ICONS  -->
-			
-		<!-- div table start -->	
-		<table width="600" height="55vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-		<!-- div table end -->
-
-<!-- footer start -->
-			
-<!-- Equitise address start -->
-<table align="center" width="600" bgcolor="#05004d" class="email-container, format, fluid">
-	<tr>
-		<td width="100%" style="text-align: center; color: #f6f7f4;" class="format">Equitise Australia (Head Office)<br>85 William St, Darlinghurst NSW 2010, Australia</td>
-	</tr>
-</table>
-<!-- Equitise address end -->
-			
-		<!-- div table start -->	
-		<table width="600" height="55vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-		<!-- div table end -->
+<div class="slider">
+    <div class="inner">
+        <div class="item active">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+        </div>
+        <div class="item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+        </div>
+    </div>
+    <button class="prev">&lt;</button>
+    <button class="next">&gt;</button>
+</div>
 	
-<!-- Equitise phone/email table start -->
-<table align="center" width="600" bgcolor="#05004d" class="email-container, footForm, fluid">
-	<tr>
-		<td width="100%" style="text-align: center; color: #f6f7f4;" class="format"><b><a href="tel:(02)91190585" class="phone">&nbsp; (02) 9119 0585 &nbsp;</a></b><b>&nbsp;<a href=mailto:contact@equitise.com subject="Send me more info please!" style="text-decoration: none;  color: #f6f7f4;" class="email">&nbsp; Click to email us &nbsp;</a></td>
-	</tr>
-</table>
-<!-- Equitise phone/email table end -->
 	
-		<!-- div table start -->	
-		<table width="600" height="55vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-		<!-- div table end -->
+<div class="slider">
+    <div class="inner">
+        <div class="item active">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+        </div>
+        <div class="item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+        </div>
+    </div>
+    <button class="prev">&lt;</button>
+    <button class="next">&gt;</button>
+</div>
+	
+<div class="slider">
+    <div class="inner">
+        <div class="item active">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+        </div>
+        <div class="item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80"
+                    alt="kotek">
+            </div>
+        </div>
+    </div>
+    <button class="prev">&lt;</button>
+    <button class="next">&gt;</button>
+</div>
+	
+	
+<script>
+	
+var allWrap = document.getElementsByClassName('slider');
 
-<!-- Equitise registration start -->			
-<table align="center" width="600" bgcolor="#05004d" class="email-container, format, fluid">
-	<tr>
-		<td width="100%" text-align="center" class="footForm">Equitise Pty Ltd (ACN 600 053 745) is authorised and licensed by the Australian Securities Investments Commission to provide a crowdfunding service (AFSL #503190). Equitise Pty Ltd (NZBN: 9429041331231) is authorised and licensed by the Financial Markets Authority (FSP # 380626).</td>
-	</tr>
-</table>
-<!-- Equitise registration end -->
-	
-		<!-- div table start -->	
-		<table width="600" height="55vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-		<!-- div table end -->
-	
-<!-- Equitise risk warning start -->			
-<table align="center" width="600" bgcolor="#05004d" class="email-container, format, fluid">
-	<tr>
-		<td width="100%" text-align="center" class="footForm">
-		Like any investment, Crowd-Sourced Funding (CSF) is risky. Investors may lose their money and the business may not achieve its objectives. You should consider the CSF offer document and the general CSF risk warning contained in the offer document in deciding whether to apply under the offer.</td>
-	</tr>
-</table>
-<!-- Equitise risk warning end -->
-	
-		<!-- div table start -->	
-		<table width="600" height="55vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-		<!-- div table end -->
+for (var i = 0; i < allWrap.length; i++) {
+    allWrap[i].classList.add('mySlider_' + i);
 
-<!-- unsub table start -->
-<table align="center" width="600" bgcolor="#05004d" class="email-container, footForm, fluid">
-	<tr>
-		<td width="100%" style="text-align:center" class="format"><a href="https://invest.equitise.com/unsubscribe?email=tropicalart@icloud.com" class="un">&nbsp; unsubscribe &nbsp;</a></td>
-	</tr>
-</table>
-<!-- unsub table end -->
-			
-		<!-- div table start -->	
-		<table width="600" height="55vh" bgcolor="#05004d" cellpadding="0" cellspacing="0" border="0" width="100%" border-collapse="collapse" class="fluid, fluid-centered, stack-column, .stack-column-center"></table>
-		<!-- div table end -->
-	
-<!-- footer end -->
+    var slider = new Slider('.mySlider_' + i);
+    slider.addListeners();
+}
 
-	 	</td>
-	  </tr>
-	</table>
-	<!-- outer email table container end -->
+
+function Slider(newclass) {
+    this.buttons = document.querySelectorAll(newclass + ' button');
+    this.items = document.querySelectorAll(newclass + ' .item');
+    this.activeItem = 0;
+    this.isSliding = false;
+
+    this.addListeners = function () {
+        this.buttons.forEach(el => el.addEventListener("click", this.slide))
+    }
 	
-</center>
-<!-- center table container end -->	
+
+
+    this.slide = event => {
+        if (!this.isSliding) {
+            this.isSliding = true;
+            var currentItem = this.activeItem;
+
+            if (event.target === this.buttons[1]) {
+                this.activeItem === this.items.length - 1 ? this.activeItem = 0 : this.activeItem++;
+                //active slide out left
+                this.items[currentItem].classList.add('active-left');
+                //next slide in left
+                this.items[this.activeItem].classList.add('item-next', 'item-left');
+                //remove classes
+                setTimeout(() => {
+                    this.items[currentItem].classList.remove('active-left', 'active');
+                    this.items[this.activeItem].classList.remove('item-next', 'item-left');
+                    //set new active item
+                    this.items[this.activeItem].classList.add('active');
+                    this.isSliding = false;
+                }, 1000)
+            } else {
+                this.activeItem === 0 ? this.activeItem = this.items.length - 1 : this.activeItem--;
+                //active slide out right
+                this.items[currentItem].classList.add('active-right');
+                //prev slide in right
+                this.items[this.activeItem].classList.add('item-prev', 'item-right');
+                //remove classes
+                setTimeout(() => {
+                    this.items[currentItem].classList.remove('active-right', 'active');
+                    this.items[this.activeItem].classList.remove('item-prev', 'item-right');
+                    //set new active item
+                    this.items[this.activeItem].classList.add('active');
+                    this.isSliding = false;
+                }, 1000)
+            }
+        }
+    }
+}
 	
+</script>	
+
+		
 </body>
 </html>
